@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Add</title>
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+  <div>
+    <header>
+      <div class="logo">Sport accessories</div>
+      <nav class="nav">
+        <ul>
+          <li><a href="./addAccessory.html">Insert accessory</a></li>
+          <li><a href="./index.html">Accesories</a></li>
+        </ul>
+      </nav>
+    </header>
+    <form action="">
+      <input type="text" name="title" placeholder="Title" id="accessory-title">
+      <input type="text" name="brand" placeholder="Brand" id="accessory-brand">
+      <input type="text" placeholder="Image" id="accessory-image">
+      <div>
+        <input type="checkbox" id="size42" name="size" value="size43">
+        <label for="size42">42</label>
+
+        <input type="checkbox" id="size43" name="size" value="size43">
+        <label for="size43">43</label>
+        
+        <input type="checkbox" id="size44" name="size" value="size44">
+        <label for="size44">44</label>
+
+        <input type="checkbox" id="size45" name="size" value="size45">
+        <label for="size45">45</label>
+
+        <input type="checkbox" id="size46" name="size" value="size46">
+        <label for="size46">46</label>
+      </div>
+      <textarea name="description" id="accessory-description" cols="30" rows="10"></textarea>
+      <button type="submit">Press add</button>
+    </form>
+    <div id="response-message"></div>
+  </div>
+  <script src="./add.js"></script>
+</body>
+</html>
