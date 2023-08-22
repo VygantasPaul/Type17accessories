@@ -1,7 +1,5 @@
 // const toAdddisplayAccesories = (accesories) => {
 
-//   // 
-
 // }
 
 document.querySelector('form').addEventListener('submit', async(e)=>{
@@ -13,7 +11,6 @@ document.querySelector('form').addEventListener('submit', async(e)=>{
   const accessoryBrand = document.getElementById('accessory-brand').value;
   const accessoryImage = document.getElementById('accessory-image').value;
   const accessorySizes = document.querySelectorAll('input[name="size"]:checked');
-  
   if (accessorySizes.length > 0) {
     accessorySizes.forEach(element => {
       const checkbox = element.value;
@@ -22,7 +19,7 @@ document.querySelector('form').addEventListener('submit', async(e)=>{
   }
   
   if(accessoryTitle == '' && accessoryBrand == '' && accessoryDescription == ''){
-     alert('Please check fields')
+    alert('Please check fields')
   }else {
     const messageWrapper = document.getElementById("response-message");
     messageWrapper.innerHTML = "Recipe was inserted"
