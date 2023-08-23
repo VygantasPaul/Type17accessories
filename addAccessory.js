@@ -21,9 +21,7 @@ const toAdddisplayAccesories = () => {
     displayMessage("Accessory was not inserted. Please fill in all required fields", false);
 
   }else {
-    
     displayMessage("Accessory was inserted", true);
-
     setTimeout(()=>{
       window.location.replace("./index.html");
     },3000)

@@ -43,25 +43,6 @@ const toShowData = (accesories) =>{
     
     console.log(item)
     
-    // if (item.size.length > 0) {
-      
-    //   const label = document.createElement('span');
-    //   label.textContent = 'Sizes: ';
-    //   ul.appendChild(label);
-      
-    //   item.size.forEach(size => {
-    //     const li = document.createElement('li');
-    //     li.textContent = size;
-    //     ul.appendChild(li);
-    //   });
-      
-    // } else{
-    //   ul.innerHTML = ''
-    // }
-    
-    // const p = document.createElement('p');
-    // p.setAttribute('class','desc')
-    // p.innerHTML = item.description;
     const img = document.createElement('img');
     
     if (item.image !== ''){
@@ -69,7 +50,7 @@ const toShowData = (accesories) =>{
       img.setAttribute('src',item.image)
     } else {
       img.setAttribute('alt',item.title)
-      img.setAttribute('src',"https://static.vecteezy.com/system/resources/previews/005/337/799/original/icon-image-not-found-free-vector.jpg")
+      img.setAttribute('src',"img/icon-image-not-found-free-vector.jpg")
     }
     // console.log(item)
     wrapper.append(h2,h3,h4,img)

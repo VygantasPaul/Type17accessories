@@ -12,7 +12,6 @@ const accessoryId = localStorage.getItem("accessoryId");
 const deleteButton = document.getElementById("item-delete-button");
 
 const accessoryToScreen = (accessory) => {
-
   const published = document.getElementById('item-published');
   const unixTimestamp = accessory.createdAt; 
   const date = new Date(unixTimestamp * 1000); 
@@ -39,7 +38,7 @@ const accessoryToScreen = (accessory) => {
     img.setAttribute('src',accessory.image)
   } else { 
     img.setAttribute('alt',accessory.title)
-    img.setAttribute('src',"https://static.vecteezy.com/system/resources/previews/005/337/799/original/icon-image-not-found-free-vector.jpg")
+    img.setAttribute('src',"img/icon-image-not-found-free-vector.jpg")
   }
   const accessorySizes = document.getElementById('item-sizes');
   
@@ -65,7 +64,6 @@ const accessoryToScreen = (accessory) => {
 const getAccessory =  async() => {
   let response = await fetch ('https://64e3116cbac46e480e781e99.mockapi.io/accesories/' +accessoryId);
   
-  
   try{
     if(response.ok) {
       let accessory = await response.json();
@@ -90,12 +88,12 @@ try{
     displayMessage('Accessory was deleted',true)
     setTimeout(() => {
       window.location.replace("./index.html");
-    }, 3000);
+    },1000);
   }
   
 }catch(error){
   console.log(error)
-  displayMessage('Accessory was not deleted',false)
+  displayMessage('Accessory was added with error',false)
   
 }
 
