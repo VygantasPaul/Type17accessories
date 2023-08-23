@@ -12,9 +12,19 @@ header{
   padding-right: 2rem;
   
 }
+#response-message {
+  padding: 0.4rem;
+  
+}
+ul {
+  margin: 0;
+  padding: 0;
+}
 a {
   text-decoration: none;
+  color: #333;
 }
+
 .logo{
   font-size: 1.8rem;
 }
@@ -24,6 +34,16 @@ a {
   list-style: none;
   gap: 1rem;
 }
+.nav ul li {
+  padding: 0 1rem;
+  display: inline;
+  
+}
+
+.nav ul li a {
+  color: aliceblue;
+}
+
 .accessories {
   display: grid;
   grid-template-columns: repeat(3, minmax(150px, 1fr));
@@ -31,19 +51,59 @@ a {
   gap: 5rem;
   padding: 10rem;
 }
-.accessories .item img {
+.item-wrapper{   
+  
+  padding: 1rem;
+  text-decoration: none;
+  color: black;
+  transition: 0.3s;
+  box-shadow: 0 1px 2px rgb(18, 180, 212);
+}
+.item-wrapper:hover{
+  scale: 1.03;
+}
+.accessories .item-wrapper img {
   width: 100%;
   height: 300px;
   object-fit: cover;
 }
-ul {
-  margin: 0;
-  padding: 0;
+
+.accessories .item-wrapper ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+ul li {
+  display: inline;
+  margin-right: 1rem;
+}
+.item-page {
+  max-width: 1000px;
+  margin: 50px auto;
+}
+.item-wrapper-inner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  
+  
+}
+.item-wrapper-inner .image-wrapper,.item-wrapper-inner .item-info {
+  width: 50%
+}
+#item-poster-image{
+  width: 100%;
+  height: 500px;
+  object-fit: cover;
+}
+.item-info{
+  padding-left: 1rem;
+  padding-right: 1rem;
+  padding-top: 1rem;
 }
 form{
   display: flex;
   flex-direction: column;
-  width: 70%;
   margin: auto;
   margin-top: 2rem;
   gap:1rem;
@@ -60,22 +120,18 @@ form button{
   transition: 0.3s;
   color: #fff;
 }
-
-.accessories .item ul {
-  list-style: none;
-  padding-left: 0;
-}
-.accessories .item ul li {
-  display: inline;
-  margin-right: 1rem;
-}
-
-.nav ul li {
-  padding: 0 1rem;
-  display: inline;
-  
+.item-delete-button{
+  padding: 1rem 2rem;
+  background-color: brown;
+  color: white;
+  letter-spacing: 1px;
+  font-weight: 500;
+  cursor: pointer;
+  border: none;
+  transition: 0.3s; 
 }
 
-.nav ul li  a {
-  color: aliceblue;
+.item-delete-button:hover{
+  background-color: rgb(123, 34, 34);
 }
+

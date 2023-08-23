@@ -1,5 +1,3 @@
-
-
 const addcar = () => {
   let brandInput = document.querySelector('#brand').value;
   let modelInput = document.querySelector('#model').value;
