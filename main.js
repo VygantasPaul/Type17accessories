@@ -5,7 +5,7 @@
 const toShowData = (accesories) =>{
   const accesoriesWrap = document.querySelector('.accessories');
   
-  accesories.forEach(item => {
+  accesories.sort((a, b) => a.title.localeCompare(b.title)).forEach(item => {
     const unixTimestamp = item.createdAt; // Example Unix timestamp
     
     const date = new Date(unixTimestamp * 1000); // Convert to milliseconds
@@ -15,7 +15,7 @@ const toShowData = (accesories) =>{
     
     
     const wrapper = document.createElement('a');
-    wrapper.setAttribute('href','./accessory.html')
+    wrapper.setAttribute('href','./accessory.html?accessoryId='+item.id)
     
     wrapper.addEventListener('click',()=>{
       localStorage.setItem('accessoryId', item.id)
@@ -52,7 +52,7 @@ const toShowData = (accesories) =>{
       img.setAttribute('alt',item.title)
       img.setAttribute('src',"img/icon-image-not-found-free-vector.jpg")
     }
-    // console.log(item)
+    
     wrapper.append(h2,h3,h4,img)
     
     accesoriesWrap.append(wrapper)

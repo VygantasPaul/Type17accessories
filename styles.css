@@ -115,10 +115,12 @@ form button{
   padding: 1rem;
   border: 1px solid rgb(76, 170, 213);
   background-color: rgb(126, 205, 241);
-  border: none;
   cursor: pointer;
   transition: 0.3s;
   color: #fff;
+}
+form button:hover {
+  background-color: rgb(30, 109, 146);
 }
 .item-delete-button{
   padding: 1rem 2rem;

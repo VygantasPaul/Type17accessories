@@ -1,3 +1,5 @@
+const BASE_URL = 'https://64e3116cbac46e480e781e99.mockapi.io/accesories/';
+
 const messageWrapper = document.getElementById("response-message");
 
 const clearMessage = () => {
@@ -8,21 +10,26 @@ const displayMessage = (message, isSuccess) => {
   messageWrapper.style.color = isSuccess ? "green" : "red";
 };
 
-const accessoryId = localStorage.getItem("accessoryId");
+const url = new URL(window.location.href);
+const accessoryId = url.searchParams.get("accessoryId");
+
 const deleteButton = document.getElementById("item-delete-button");
 
-const accessoryToScreen = (accessory) => {
-  const published = document.getElementById('item-published');
+const formattedDateShow = (accessory) => {
   const unixTimestamp = accessory.createdAt; 
   const date = new Date(unixTimestamp * 1000); 
   const formattedDate = date.toLocaleString(); 
-  
-  let dateformat = formattedDate.split(',');
-  
+  const dateformat = formattedDate.split(',');
+  return dateformat
+}
+
+const insertAccessoryToScreen = (accessory) => {
+  const published = document.getElementById('item-published');
+  const dateformat = formattedDateShow(accessory);
   published.innerHTML = `Published: <small>${dateformat[0]} </small>`;
   
   const title = document.getElementById('item-title');
-  title.innerHTML = accessory.title;
+  title.innerHTML = accessory.title; 
   
   const brand = document.getElementById('item-brand');
   brand.innerHTML = accessory.brand;
@@ -45,7 +52,7 @@ const accessoryToScreen = (accessory) => {
   if (accessory.size.length > 0) {
     
     const label = document.createElement('span');
-    label.textContent = 'Sizes: ';
+    label.innerHTML = `<strong> Sizes: </strong> `;
     accessorySizes.append(label)
     
     accessory.size.forEach(e => {
@@ -62,12 +69,12 @@ const accessoryToScreen = (accessory) => {
 }
 
 const getAccessory =  async() => {
-  let response = await fetch ('https://64e3116cbac46e480e781e99.mockapi.io/accesories/' +accessoryId);
+  let response = await fetch (BASE_URL + accessoryId);
   
   try{
     if(response.ok) {
       let accessory = await response.json();
-      accessoryToScreen(accessory)
+      return accessory
     }
   }catch(error){
     console.log(error)
@@ -75,26 +82,45 @@ const getAccessory =  async() => {
   
 }
 
-getAccessory();
-
-deleteButton.addEventListener("click", async () => {
-  let response = await fetch ('https://64e3116cbac46e480e781e99.mockapi.io/accesories/' +accessoryId, {
-  method:"DELETE"
-});
-
-try{
-  let accessory = await response.json();
-  if (accessory) {
-    displayMessage('Accessory was deleted',true)
+const deleteAccessory = async () => {
+  try{
+    const response = await fetch (BASE_URL + accessoryId, {
+      method:"DELETE"
+    });
+    
+    const data = await response.json();
+    return data;
+    
+  }catch(error){
+    console.log(error)
+    return false;
+    
+  }
+}
+const onDeleteAccessory = (data) => {
+  if(data) {
+    displayMessage("Accesory was deleted", true)
     setTimeout(() => {
       window.location.replace("./index.html");
-    },1000);
+    }, 1000);
+  } else {
+    displayMessage("Accesory was not deleted", true)
   }
-  
-}catch(error){
-  console.log(error)
-  displayMessage('Accessory was added with error',false)
-  
+}
+const onClickDeleteButton = async() => {
+  try {
+    const response = await deleteAccessory();
+    onDeleteAccessory(response)
+  }catch (error) {
+    console.log(error)
+  }
 }
 
-})
+deleteButton.addEventListener("click",  onClickDeleteButton);
+
+const displayAccessory = async() => {
+  const accessory =  await getAccessory()
+  accessory && insertAccessoryToScreen(accessory)
+}
+
+displayAccessory()
