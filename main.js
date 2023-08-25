@@ -9,8 +9,11 @@ const toShowData = (accesories) =>{
     const wrapper = document.createElement('a');
     wrapper.setAttribute('href','./accessory.html?accessoryId='+item.id)
     
-    wrapper.setAttribute('class','item-wrapper') 
-    
+    wrapper.setAttribute('class','item-wrapper')
+     
+    const img = document.createElement('img');
+    setImageAttributes(img, item.title, item.image); 
+
     const h2 = document.createElement('h2');
     h2.setAttribute('class','item-title');
     
@@ -27,17 +30,11 @@ const toShowData = (accesories) =>{
     h4.innerHTML= `Published: <small>${dateformat} </small>`;
     
     const ul = document.createElement('ul');
-    
     ul.setAttribute('class', 'item-sizes');
     
-    console.log(item)
-    
-    const img = document.getElementById('item-poster-image');
-    setImageAttributes(img, accessory.title, accessory.image); 
-
     wrapper.append(h2,h3,h4,img)
     accesoriesWrap.append(wrapper)
-    
+    console.log(item)
   });
 }
 
