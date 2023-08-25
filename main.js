@@ -1,25 +1,13 @@
-// fetch('https://64e3116cbac46e480e781e99.mockapi.io/accesories')
-// .then(response=> response.json())
-// .then(data => console.log(data))
+import {formattedDateShow} from './src/formatDate.js';
+import {setImageAttributes} from './src/imageAttr.js';
 
 const toShowData = (accesories) =>{
   const accesoriesWrap = document.querySelector('.accessories');
   
   accesories.sort((a, b) => a.title.localeCompare(b.title)).forEach(item => {
-    const unixTimestamp = item.createdAt; // Example Unix timestamp
-    
-    const date = new Date(unixTimestamp * 1000); // Convert to milliseconds
-    const formattedDate = date.toLocaleString(); // Convert to local date and time string
-    
-    let dateformat = formattedDate.split(',');
-    
-    
+
     const wrapper = document.createElement('a');
     wrapper.setAttribute('href','./accessory.html?accessoryId='+item.id)
-    
-    wrapper.addEventListener('click',()=>{
-      localStorage.setItem('accessoryId', item.id)
-    })
     
     wrapper.setAttribute('class','item-wrapper') 
     
@@ -31,11 +19,12 @@ const toShowData = (accesories) =>{
     
     const h4 = document.createElement('h4');
     h4.setAttribute('class','item-published');
-    
+
+    const dateformat = formattedDateShow(item);
     
     h2.innerHTML = `Title: ${item.title}`;
     h3.innerHTML = `Brand: ${item.brand}`;
-    h4.innerHTML= `Published: <small>${dateformat[0]} </small>`;
+    h4.innerHTML= `Published: <small>${dateformat} </small>`;
     
     const ul = document.createElement('ul');
     
@@ -43,18 +32,10 @@ const toShowData = (accesories) =>{
     
     console.log(item)
     
-    const img = document.createElement('img');
-    
-    if (item.image !== ''){
-      img.setAttribute('alt',item.title)
-      img.setAttribute('src',item.image)
-    } else {
-      img.setAttribute('alt',item.title)
-      img.setAttribute('src',"img/icon-image-not-found-free-vector.jpg")
-    }
-    
+    const img = document.getElementById('item-poster-image');
+    setImageAttributes(img, accessory.title, accessory.image); 
+
     wrapper.append(h2,h3,h4,img)
-    
     accesoriesWrap.append(wrapper)
     
   });

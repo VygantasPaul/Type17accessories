@@ -1,32 +1,23 @@
 import {validateForm} from './src/validation.js';
 import {messagesDisplay} from './src/messages.js';
+import {getSelectedCheckboxValues} from './src/checkBoxes.js';
 
 const getAccesoriesObject = () => {
-  
   const accessoryTitle = document.getElementById('accessory-title').value;
   const accessoryDescription = document.getElementById('accessory-description').value;
   const accessoryBrand = document.getElementById('accessory-brand').value;
   const accessoryImage = document.getElementById('accessory-image').value;
-  const accessorySizes = document.querySelectorAll('input[name="size"]:checked');
-  const accessorySizeArray = [];
+  const accessorySizeArray = getSelectedCheckboxValues('size');
   
-  if (accessorySizes.length > 0) {
-    accessorySizes.forEach(element => {
-      const checkbox = element.value;
-      accessorySizeArray.push(checkbox);
-    });
-  }
-  const accessory ={
+  const accessory = {
     title:accessoryTitle,
     brand:accessoryBrand,
     description:accessoryDescription,
     image:accessoryImage,
     size:accessorySizeArray
   }
-  
   return accessory;
 }
-
 
 const insertAccesory = async(accessory) => {
   
@@ -43,9 +34,11 @@ const insertAccesory = async(accessory) => {
   const accesories = await response.json();
   return accesories;
   
-  } catch(error){
-  return false
-  } 
+} catch(error){
+
+  return false;
+
+} 
 
 }
 
@@ -62,7 +55,7 @@ const onAccesoryInserted = (accesories) => {
 
 document.querySelector('form').addEventListener('submit', async(e)=>{
   e.preventDefault();
- 
+  
   const accessory = getAccesoriesObject();
   if(validateForm(accessory,messagesDisplay)){
     const accesories = await insertAccesory (accessory)

@@ -11,7 +11,7 @@ const deleteButton = document.getElementById("item-delete-button");
 const insertAccessoryToScreen = (accessory) => {
   const published = document.getElementById('item-published');
   const dateformat = formattedDateShow(accessory);
-  published.innerHTML = `Published: <small>${dateformat[0]} </small>`;
+  published.innerHTML = `Published: <small>${dateformat} </small>`;
   
   const title = document.getElementById('item-title');
   title.innerHTML = accessory.title; 
@@ -27,7 +27,8 @@ const insertAccessoryToScreen = (accessory) => {
 
   const accessorySizes = document.getElementById('item-sizes');
   const sizeList = createSizeList(accessory.size);
-  accessorySizes.innerHTML = ''; // Clear existing content
+
+  accessorySizes.innerHTML = ''; 
   accessorySizes.appendChild(sizeList);
   
   console.log(accessory)
@@ -64,12 +65,12 @@ const deleteAccessory = async () => {
 }
 const onDeleteAccessory = (data) => {
   if(data) {
-    messagesDisplay("Accesory was deleted", true)
+    messagesDisplay("Accessory was deleted", true)
     setTimeout(() => {
       window.location.replace("./index.html");
     }, 1000);
   } else {
-    messagesDisplay("Accesory was not deleted", true)
+    messagesDisplay("Accessory was not deleted", true)
   }
 }
 const onClickDeleteButton = async() => {

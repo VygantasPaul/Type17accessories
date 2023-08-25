@@ -3,5 +3,5 @@ export const formattedDateShow = (accessory) => {
   const date = new Date(unixTimestamp * 1000); 
   const formattedDate = date.toLocaleString(); 
   const dateformat = formattedDate.split(',');
-  return dateformat
+  return dateformat[0];
 }
