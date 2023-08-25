@@ -1,6 +1,6 @@
 import {formattedDateShow} from './src/formatDate.js';
 import {setImageAttributes} from './src/imageAttr.js';
-
+import {addHeader} from './src/header.js';
 const toShowData = (accesories) =>{
   const accesoriesWrap = document.querySelector('.accessories');
   
@@ -29,9 +29,6 @@ const toShowData = (accesories) =>{
     h3.innerHTML = `Brand: ${item.brand}`;
     h4.innerHTML= `Published: <small>${dateformat} </small>`;
     
-    const ul = document.createElement('ul');
-    ul.setAttribute('class', 'item-sizes');
-    
     wrapper.append(h2,h3,h4,img)
     accesoriesWrap.append(wrapper)
     console.log(item)
@@ -51,5 +48,7 @@ const displayData =  async() => {
   
 }
 
-displayData();
+const app = document.querySelector('#wrap');
+addHeader(app)
 
+displayData();

@@ -2,7 +2,7 @@ import {messagesDisplay} from './src/messages.js';
 import {formattedDateShow} from './src/formatDate.js';
 import {setImageAttributes} from './src/imageAttr.js';
 import {createSizeList} from './src/sizeList.js';
-
+import {addHeader} from './src/header.js';
 const BASE_URL = 'https://64e3116cbac46e480e781e99.mockapi.io/accesories/';
 const url = new URL(window.location.href);
 const accessoryId = url.searchParams.get("accessoryId");
@@ -90,3 +90,7 @@ const displayAccessory = async() => {
 }
 
 displayAccessory()
+
+const app = document.querySelector('#wrap');
+addHeader(app)
+

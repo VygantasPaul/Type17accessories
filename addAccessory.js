@@ -1,7 +1,7 @@
 import {validateForm} from './src/validation.js';
 import {messagesDisplay} from './src/messages.js';
 import {getSelectedCheckboxValues} from './src/checkBoxes.js';
-
+import {addHeader} from './src/header.js';
 const getAccesoriesObject = () => {
   const accessoryTitle = document.getElementById('accessory-title').value;
   const accessoryDescription = document.getElementById('accessory-description').value;
@@ -35,7 +35,6 @@ const insertAccesory = async(accessory) => {
   return accesories;
   
 } catch(error){
-
   return false;
 
 } 
@@ -66,3 +65,5 @@ document.querySelector('form').addEventListener('submit', async(e)=>{
   
 })
 
+const app = document.querySelector('#wrap');
+addHeader(app)
