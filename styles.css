@@ -34,6 +34,11 @@ a {
   list-style: none;
   gap: 1rem;
 }
+ul li {
+  display: inline;
+  margin-right: 0.5rem;
+}
+
 .nav ul li {
   padding: 0 1rem;
   display: inline;
@@ -51,6 +56,17 @@ a {
   gap: 5rem;
   padding: 10rem;
 }
+.accessories .item-wrapper img {
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
+  cursor: pointer;
+}
+
+.accessories .item-wrapper ul {
+  list-style: none;
+  padding-left: 0;
+}
 .item-wrapper{   
   padding: 1rem;
   text-decoration: none;
@@ -61,21 +77,28 @@ a {
 .item-wrapper:hover{
   scale: 1.03;
 }
-.accessories .item-wrapper img {
+
+
+
+#item-sizes li {
+  background-color: rgb(211, 213, 215);
+  padding: 0.5rem;
+}
+
+#item-poster-image{
   width: 100%;
-  height: 300px;
+  height: 500px;
   object-fit: cover;
+  cursor: pointer;
 }
 
-.accessories .item-wrapper ul {
-  list-style: none;
-  padding-left: 0;
+
+#item-description  {
+  border: 1px solid #ccc;
+  padding: 0.5rem;
 }
 
-ul li {
-  display: inline;
-  margin-right: 1rem;
-}
+
 .item-page {
   max-width: 1000px;
   margin: 50px auto;
@@ -85,21 +108,31 @@ ul li {
   justify-content: center;
   align-items: center;
   
-  
 }
 .item-wrapper-inner .image-wrapper,.item-wrapper-inner .item-info {
   width: 50%
-}
-#item-poster-image{
-  width: 100%;
-  height: 500px;
-  object-fit: cover;
 }
 .item-info{
   padding-left: 1rem;
   padding-right: 1rem;
   padding-top: 1rem;
 }
+.item-delete-button{
+  padding: 1rem 2rem;
+  background-color: brown;
+  color: white;
+  letter-spacing: 1px;
+  font-weight: 500;
+  cursor: pointer;
+  border: none;
+  transition: 0.3s; 
+}
+
+.item-delete-button:hover{
+  background-color: rgb(123, 34, 34);
+}
+
+
 form{
   display: flex;
   flex-direction: column;
@@ -122,18 +155,3 @@ form button{
 form button:hover {
   background-color: rgb(30, 109, 146);
 }
-.item-delete-button{
-  padding: 1rem 2rem;
-  background-color: brown;
-  color: white;
-  letter-spacing: 1px;
-  font-weight: 500;
-  cursor: pointer;
-  border: none;
-  transition: 0.3s; 
-}
-
-.item-delete-button:hover{
-  background-color: rgb(123, 34, 34);
-}
-

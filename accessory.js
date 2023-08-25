@@ -1,32 +1,17 @@
+import {messagesDisplay} from './src/messages.js';
+import {formattedDateShow} from './src/formatDate.js';
+import {setImageAttributes} from './src/imageAttr.js';
+import {createSizeList} from './src/sizeList.js';
+
 const BASE_URL = 'https://64e3116cbac46e480e781e99.mockapi.io/accesories/';
-
-const messageWrapper = document.getElementById("response-message");
-
-const clearMessage = () => {
-  messageWrapper.innerHTML = "";
-};
-const displayMessage = (message, isSuccess) => {
-  messageWrapper.innerHTML = message;
-  messageWrapper.style.color = isSuccess ? "green" : "red";
-};
-
 const url = new URL(window.location.href);
 const accessoryId = url.searchParams.get("accessoryId");
-
 const deleteButton = document.getElementById("item-delete-button");
-
-const formattedDateShow = (accessory) => {
-  const unixTimestamp = accessory.createdAt; 
-  const date = new Date(unixTimestamp * 1000); 
-  const formattedDate = date.toLocaleString(); 
-  const dateformat = formattedDate.split(',');
-  return dateformat
-}
 
 const insertAccessoryToScreen = (accessory) => {
   const published = document.getElementById('item-published');
   const dateformat = formattedDateShow(accessory);
-  published.innerHTML = `Published: <small>${dateformat[0]} </small>`;
+  published.innerHTML = `Published: <small>${dateformat} </small>`;
   
   const title = document.getElementById('item-title');
   title.innerHTML = accessory.title; 
@@ -38,32 +23,13 @@ const insertAccessoryToScreen = (accessory) => {
   description.innerHTML = `<strong>Description:</strong>  ${accessory.description}`;
   
   const img = document.getElementById('item-poster-image');
-  img.setAttribute('src', accessory.image)
-  
-  if (accessory.image !== ''){
-    img.setAttribute('alt',accessory.title)
-    img.setAttribute('src',accessory.image)
-  } else { 
-    img.setAttribute('alt',accessory.title)
-    img.setAttribute('src',"img/icon-image-not-found-free-vector.jpg")
-  }
+  setImageAttributes(img, accessory.title, accessory.image); 
+
   const accessorySizes = document.getElementById('item-sizes');
-  
-  if (accessory.size.length > 0) {
-    
-    const label = document.createElement('span');
-    label.innerHTML = `<strong> Sizes: </strong> `;
-    accessorySizes.append(label)
-    
-    accessory.size.forEach(e => {
-      const sizeLi = document.createElement('li');
-      sizeLi.textContent = e;
-      accessorySizes.append(sizeLi);
-    });
-    
-  } else {
-    accessorySizes.innerHTML = ' '
-  }
+  const sizeList = createSizeList(accessory.size);
+
+  accessorySizes.innerHTML = ''; 
+  accessorySizes.appendChild(sizeList);
   
   console.log(accessory)
 }
@@ -99,12 +65,12 @@ const deleteAccessory = async () => {
 }
 const onDeleteAccessory = (data) => {
   if(data) {
-    displayMessage("Accesory was deleted", true)
+    messagesDisplay("Accessory was deleted", true)
     setTimeout(() => {
       window.location.replace("./index.html");
     }, 1000);
   } else {
-    displayMessage("Accesory was not deleted", true)
+    messagesDisplay("Accessory was not deleted", true)
   }
 }
 const onClickDeleteButton = async() => {
