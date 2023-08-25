@@ -32,7 +32,7 @@ const toShowData = (accesories) =>{
     const ul = document.createElement('ul');
     ul.setAttribute('class', 'item-sizes');
     
-    wrapper.append(h2,h3,h4,img)
+    wrapper.append(h2,h3,h4,ul,img)
     accesoriesWrap.append(wrapper)
     console.log(item)
   });
